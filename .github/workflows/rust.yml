@@ -1,0 +1,29 @@
+name: Rust CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  rust-check:
+    name: Rust Build, Test & Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy, rustfmt
+      - uses: Swatinem/rust-cache@v2
+      - name: Format Check
+        run: cargo fmt --all -- --check
+      - name: Clippy Linter
+        run: cargo clippy --workspace --all-targets -- -D warnings
+      - name: Run Test Suite
+        run: cargo test --workspace --all-targets
+      - name: Run EGM Validation Suite via CLI
+        run: cargo run -p egm-cli -- check --verbose
