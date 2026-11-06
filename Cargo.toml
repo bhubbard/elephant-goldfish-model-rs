@@ -10,7 +10,7 @@ version = "0.2.0"
 edition = "2021"
 authors = ["casaos <casaos@casaos.casaos>"]
 license = "Apache-2.0"
-repository = "https://github.com/bhubbard/goldfish"
+repository = "https://github.com/bhubbard/elephant-goldfish-model-rs"
 readme = "README.md"
 description = "Native Rust port of the Elephant-Goldfish Model (EGM) Spec-Driven Development framework"
 
